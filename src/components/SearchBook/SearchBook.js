@@ -25,25 +25,54 @@ class SearchBook extends Component {
      */
     handleOnSearch = (event) => {
 
+        console.log('XXXXXXXXXXXX',event.target.value)
+
         this.setState({
-            searchQuery: event.target.value
-        }, () => {
-            setTimeout(() => {
-                BooksAPI.search(this.state.searchQuery)
-                    .then(books => {
-                        if (!(typeof (books) === 'object' && books.hasOwnProperty('error')) || books === 'undefined') {
+            searchQuery:event.target.value
+        },()=>{
+            //TODO: Implement this call using debounce/throttle
+            setTimeout(()=>{
+                if(this.state.searchQuery !== '') {
+                    BooksAPI.search(this.state.searchQuery).then(books=>{
+                        if(!(typeof books === 'object' && books.hasOwnProperty('error'))){
                             this.setState({
                                 booksList: Utils.filterUsefulBookInfo(books)
                             })
-                        } else {
-                            this.setState({
-                                booksList: []
-                            })
                         }
 
+                    });
+                }else{
+                    this.setState({
+                        searchQuery: '',
+                        booksList: [],
                     })
-            }, 200);
+                }
+            },1000)
         });
+
+
+
+       /* this.setState({
+            searchQuery: event.target.value
+        }, () => {
+            if(this.state.searchQuery!==''){
+                setTimeout(() => {
+                    BooksAPI.search(this.state.searchQuery)
+                        .then(books => {
+                            if (!(typeof (books) === 'object' && books.hasOwnProperty('error')) || books === 'undefined') {
+                                this.setState({
+                                    booksList: Utils.filterUsefulBookInfo(books)
+                                })
+                            } else {
+                                this.setState({
+                                    booksList: []
+                                })
+                            }
+
+                        })
+                }, 200);
+            }
+        });*/
     };
 
     /**
@@ -52,6 +81,7 @@ class SearchBook extends Component {
      * @param book
      * */
     handleMoveToShelf = (event, book) => {
+        console.log('==handleMoveToShelf',event.target.value)
         this.props.changeBookShelf(event.target.value, book);
     };
 
@@ -86,7 +116,7 @@ class SearchBook extends Component {
 
                     <ol className="books-grid">
                         {this.state.booksList.map(book => (
-                            <li>
+                            <li key={book.id}>
                                 <div className="book">
                                     <div className="book-top">
                                         <div className="book-cover"
@@ -96,10 +126,10 @@ class SearchBook extends Component {
                                                  backgroundImage: `url(${book.smallThumbnail})`
                                              }}></div>
                                         <div className="book-shelf-changer">
-                                            <select
+                                            <select defaultValue="move"
                                                 onClick={(event) => this.handleBookShelf(event, book)}
                                                 onChange={(event) => this.handleMoveToShelf(event, book)}>
-                                                <option value="move" selected disabled>Move to...</option>
+                                                <option   value="move" disabled>Move to...</option>
                                                 <option value="currentlyReading">
                                                     {this.state.bookShelf === "currentlyReading" ? "✓" : " "}Currently
                                                     Reading

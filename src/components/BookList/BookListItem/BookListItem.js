@@ -1,5 +1,14 @@
+/**
+ * Author: T.D. Nuwan Chathuranga
+ * Date: 30/10/2020
+ *
+ * **/
+
 import React from 'react';
 import PropTypes from 'prop-types';
+
+//Style file
+import "./BookListItem.css";
 
 BookListItem.propTypes = {
     title: PropTypes.string.isRequired,
@@ -18,7 +27,7 @@ function BookListItem({title, list}) {
         message = 'No content'
         :
         message = '';
-    
+
     return (
         <div className="bookshelf">
             <h2 className="bookshelf-title">
@@ -39,4 +48,4 @@ function BookListItem({title, list}) {
     );
 }
 
-export default BookListItem
+export default BookListItem;

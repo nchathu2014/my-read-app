@@ -11,8 +11,9 @@
  * @returns {*}
  */
 export const filterUsefulBookInfo = (books) => {
+
     return books.map(book => {
-            const {id, title, authors, shelf, imageLinks: {thumbnail,smallThumbnail}} = book;
+            const {id, title, authors, shelf, imageLinks: {thumbnail={},smallThumbnail={}}={}} = book;
             return {
                 id,
                 title,

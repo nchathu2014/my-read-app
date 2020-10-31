@@ -1,10 +1,10 @@
 import React from 'react';
 import './BooksTitle.css';
 
-function BookTitle({title}){
+function BookTitle({title,totalBooks}){
     return(
         <div className="list-books-title">
-            <h1>{title}</h1>
+            <h1>{title}<span style={{float:"right"}}>Shelves books: #{totalBooks}</span></h1>
         </div>
     );
 }
