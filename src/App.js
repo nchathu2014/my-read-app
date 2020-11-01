@@ -32,28 +32,29 @@ class BooksApp extends React.Component {
      * @toShelf: string
      * @book: Object
      * */
-    handleChangeBookShelf = (toShelf, book) => {
+     handleChangeBookShelf = async(toShelf, book) => {
 
-        //const {shelf} = this.state.bookList.filter(bookItem => bookItem.id === book.id)[0];
+        await BooksAPI.update(book, toShelf);
+        const books = await BooksAPI.getAll();
+        this.setState({
+            bookList: Utils.filterUsefulBookInfo(books)
+        });
 
-        //Prevent the API call when shifting within the same shelves
-        // if (shelf !== toShelf) {
-        BooksAPI.update(book, toShelf).then(() => {
+        /*BooksAPI.update(book, toShelf).then(() => {
             BooksAPI.getAll().then(books => {
                 this.setState(() => ({
                     bookList: Utils.filterUsefulBookInfo(books)
                 }));
             });
-        });
-        //}
+        });*/
+
     };
 
-    componentDidMount() {
+    async componentDidMount() {
         //Call for all books for initial data population
-        BooksAPI.getAll().then((books) => {
-            this.setState(() => ({
-                bookList: Utils.filterUsefulBookInfo(books)
-            }));
+        const books = await BooksAPI.getAll();
+        this.setState({
+            bookList: Utils.filterUsefulBookInfo(books)
         });
     }
 

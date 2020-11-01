@@ -41,23 +41,26 @@ class SearchBook extends Component {
      * This function calls to the search API endpoint and stores the search results into
      * a internal state
      */
-    searchForBooks = () => {
+    searchForBooks = async () => {
         if (this.state.searchQuery !== '') {
-            BooksAPI.search(this.state.searchQuery).then(books => {
-                if (!(typeof books === 'object' && books.hasOwnProperty('error'))) {
-                    this.setState({
-                        booksList: Utils.filterUsefulBookInfo(books)
-                    })
-                }
 
-            });
+            const books = await BooksAPI.search(this.state.searchQuery)
+
+            if (!(typeof books === 'object' && books.hasOwnProperty('error'))) {
+                this.setState({
+                    booksList: Utils.filterUsefulBookInfo(books)
+                })
+            } else {
+                this.setState({
+                    booksList: [],
+                })
+            }
         } else {
             this.setState({
                 searchQuery: '',
                 booksList: [],
             })
         }
-
     };
 
     /**
@@ -84,11 +87,11 @@ class SearchBook extends Component {
      * @param event
      * @param book
      * */
-    handleBookShelf = (event, book) => {
-        BooksAPI.get(book.id).then((book) => {
-            this.setState({
-                bookShelf: book.shelf
-            })
+    handleBookShelf = async (event, book) => {
+
+        const bookSelected = await BooksAPI.get(book.id);
+        this.setState({
+            bookShelf: bookSelected.shelf
         });
     };
 
