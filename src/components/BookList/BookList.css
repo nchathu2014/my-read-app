@@ -88,3 +88,22 @@
     right: 25px;
     bottom: 25px;
 }
+
+.book-more-info{
+    font-size:10px;
+    background:#eee;
+}
+
+.book-more-info ul{
+    list-style:none;
+    padding:5px;
+    margin:0;
+}
+
+.book-more-info ul li{
+    padding:0;
+}
+
+.book-more-info ul li span{
+    font-weight: 600;
+}

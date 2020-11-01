@@ -33,6 +33,7 @@ function BookList({books, changeBookShelf}) {
         changeBookShelf(event.target.value, book)
     };
 
+
     /**
      * This function get the shelf and returns the books with the
      * corresponding shelf type
@@ -42,7 +43,7 @@ function BookList({books, changeBookShelf}) {
         return books
             .filter(book => book.shelf === shelf)
             .map(book => {
-                const {id, title, thumbnail, authors, shelf} = book;
+                const {id, title, pageCount, previewLink,publishedDate, publisher,thumbnail, authors, shelf} = book;
                 return (
                     <li key={id}>
                         <div className="book">
@@ -69,6 +70,16 @@ function BookList({books, changeBookShelf}) {
                             <div className="book-title">{title}</div>
                             <div className="book-authors">
                                 {authors.toString()}
+                            </div>
+                            <div className="book-more-info">
+                                <ul>
+                                    <li><span>Publisher: </span>{publisher?publisher:'Unknown'}</li>
+                                    <li><span>Pub.Date: </span>{publishedDate}</li>
+                                    <li><span>Pages: </span>{pageCount}</li>
+                                    <li>
+                                        <a href={previewLink} target="_blank">Preview</a>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </li>
