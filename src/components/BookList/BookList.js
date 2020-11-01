@@ -1,16 +1,22 @@
 /**
+ * =================================================================================================
+ *
  * Author: T.D. Nuwan Chathuranga
  * Date: 30/10/2020
+ * BookList: This component populates the books in to shelve and let the user to shifting books among
+ * shelves
+ * Functions: handleShelfChange(event, book), getBookShelf(shelf)
  *
+ * =================================================================================================
  * **/
-
-import React from 'react';
+import React from "react";
 import BookListItem from "./BookListItem/BookListItem";
 import PropTypes from "prop-types";
 
 //Style file
-import './BookList.css';
+import "./BookList.css";
 
+//Prop validation
 BookList.propTypes = {
     books: PropTypes.array.isRequired,
 };

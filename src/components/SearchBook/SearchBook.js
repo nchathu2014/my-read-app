@@ -4,14 +4,14 @@
  * Author: T.D. Nuwan Chathuranga
  * Date: 30/10/2020
  * SearchBook: This component executes the searching functionality of the app
- *
+ * Functions: searchForBooks(), handleOnSearch(event), handleMoveToShelf(event, book),handleOnKeyUp()
  * =================================================================================================
  * **/
 
 import React, {Component} from "react";
-import PropTypes from 'prop-types';
-import {Link} from 'react-router-dom';
-import * as BooksAPI from './../../BooksAPI';
+import PropTypes from "prop-types";
+import {Link} from "react-router-dom";
+import * as BooksAPI from "./../../BooksAPI";
 import * as Utils from "./../../utils/Utils";
 
 // Constants
@@ -76,7 +76,6 @@ class SearchBook extends Component {
      * @param book
      * */
     handleMoveToShelf = (event, book) => {
-        console.log('==handleMoveToShelf', event.target.value)
         this.props.changeBookShelf(event.target.value, book);
     };
 
@@ -92,7 +91,6 @@ class SearchBook extends Component {
             })
         });
     };
-
 
     /**
      * This function calls the debounce method when user typed in to the search box

@@ -1,15 +1,21 @@
 /**
+ * =================================================================================================
+ *
  * Author: T.D. Nuwan Chathuranga
  * Date: 30/10/2020
+ * BookListItem: Granular level functional component, shows book list item
+ * Functions: BookListItem(title, list)
  *
+ * =================================================================================================
  * **/
 
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
 //Style file
 import "./BookListItem.css";
 
+//Prop validation
 BookListItem.propTypes = {
     title: PropTypes.string.isRequired,
     list: PropTypes.array.isRequired

@@ -1,19 +1,24 @@
 /**
+ * =================================================================================================
+ *
  * Author: T.D. Nuwan Chathuranga
  * Date: 30/10/2020
+ * BookApp: This component is the parent component of the app
+ * Functions: handleChangeBookShelf(toShelf, book),componentDidMount()*
  *
+ * =================================================================================================
  * **/
 
-import React from 'react';
-import {Link, Route} from 'react-router-dom';
-import * as BooksAPI from './BooksAPI';
-import * as Utils from './utils/Utils';
+import React from "react";
+import {Link, Route} from "react-router-dom";
+import * as BooksAPI from "./BooksAPI";
+import * as Utils from "./utils/Utils";
 import BookTitle from "./components/BooksTitle/BooksTitle";
 import BookList from "./components/BookList/BookList";
 import SearchBook from "./components/SearchBook/SearchBook";
 
 //Style files
-import './App.css';
+import "./App.css";
 
 class BooksApp extends React.Component {
     //App state
@@ -32,14 +37,14 @@ class BooksApp extends React.Component {
         //const {shelf} = this.state.bookList.filter(bookItem => bookItem.id === book.id)[0];
 
         //Prevent the API call when shifting within the same shelves
-       // if (shelf !== toShelf) {
-            BooksAPI.update(book, toShelf).then(() => {
-                BooksAPI.getAll().then(books => {
-                    this.setState(() => ({
-                        bookList: Utils.filterUsefulBookInfo(books)
-                    }));
-                });
+        // if (shelf !== toShelf) {
+        BooksAPI.update(book, toShelf).then(() => {
+            BooksAPI.getAll().then(books => {
+                this.setState(() => ({
+                    bookList: Utils.filterUsefulBookInfo(books)
+                }));
             });
+        });
         //}
     };
 
@@ -95,4 +100,4 @@ class BooksApp extends React.Component {
     }
 }
 
-export default BooksApp
+export default BooksApp;
