@@ -1,0 +1,3 @@
+export const GLOBAL_CONSTANTS = {
+    DEBOUNCE_TIME: 500
+};

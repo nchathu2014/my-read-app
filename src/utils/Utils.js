@@ -25,3 +25,17 @@ export const filterUsefulBookInfo = (books) => {
         }
     );
 };
+
+/**
+ * This function improves the performance of the application in the search page
+ * @param fn
+ * @param delay
+ * @returns {Function}
+ */
+export const debounce = (fn,delay) => {
+    let timer;
+    return ()=> {
+        clearTimeout(timer);
+        timer = setTimeout(()=>fn(),delay)
+    }
+};
