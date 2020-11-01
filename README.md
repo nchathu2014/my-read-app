@@ -41,6 +41,7 @@ Remember that good React design practice is to create new JS files for each comp
 To simplify your development process, we've provided a backend server for you to develop against. The provided file [`BooksAPI.js`](src/BooksAPI.js) contains the methods you will need to perform necessary operations on the backend:
 
 * [`getAll`](#getall)
+* [`get`](#get)
 * [`update`](#update)
 * [`search`](#search)
 
@@ -54,6 +55,18 @@ getAll()
 
 * Returns a Promise which resolves to a JSON object containing a collection of book objects.
 * This collection represents the books currently in the bookshelves in your app.
+
+### `get`
+
+Method Signature:
+
+```js
+get(bookId)
+```
+* Returns a Promise which resolves to a JSON object containing the requested book object.
+* This book represents the book in the search page your app.
+
+
 
 ### `update`
 
